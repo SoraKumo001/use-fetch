@@ -66,7 +66,7 @@ export const Page = () => {
       <button onClick={dispatch()}>Reload</button>
       {isValidating && <div>Loading</div>}
       {error && <div>Error</div>}
-      {<data />}
+      {data && <pre>{JSON.stringify(data,undefined,'  ')}</pre>}
     </>
   );
 };
