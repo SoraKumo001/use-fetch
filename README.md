@@ -31,7 +31,7 @@ Use'getDataFromTree' and 'createCache'.
 
 **_app.tsx**
 
-```tsx:_app.tsx
+```tsx
 import { AppContext, AppProps } from 'next/app';
 import { createCache, getDataFromTree, CacheType } from '@react-liblary/use-fetch';
 
