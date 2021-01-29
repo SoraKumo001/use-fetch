@@ -16,12 +16,19 @@ type fetchOption<T> = {
   skip?: boolean;       // If 'true', execution will be skipped
 };
 
-useFetch<DataType>(key: string, options?: fetchOption<DataType>): {
-    data?: WeatherType;
+useFetch<T>(key: string, options?: fetchOption<T>): {
+    data?: T;
     dispatch: (data?: T) => void; //update cache
     isValidating: boolean;        //fetch in progress
     error: unknown;               //catch error
 }
+
+mutate<T>(key: string, value?: T | undefined) => void;
+query<T>(key: string) => T;
+
+//SSR
+getDataFromTree(element: ReactElement) => Promise<CachesType>;
+createCache(data: CachesType<unknown> | undefined) => void;
 ```
 
 ### 2.2. SSR

@@ -1,6 +1,12 @@
 import { ReactElement } from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { useGlobalState, getCache, setCache } from '@react-liblary/use-global-state';
+import {
+  useGlobalState,
+  getCache,
+  setCache,
+  mutate as globalMutate,
+  query as globalQuery,
+} from '@react-liblary/use-global-state';
 
 export type CacheType<T = unknown> = {
   data?: T;
@@ -27,6 +33,12 @@ export const addEvent = (name: EventType, listener: () => void) => {
 };
 export const removeEvent = (name: EventType, listener: () => void) => {
   event = event.filter((item) => item[0] !== name || item[1] !== listener);
+};
+export const mutate = <T = unknown>(key: string, value?: T) => {
+  globalMutate<T>([GlobalKey, key], value);
+};
+export const query = <T = unknown>(key: string) => {
+  return globalQuery<T>([GlobalKey, key]);
 };
 
 export const createCache = (data?: CachesType) => {
